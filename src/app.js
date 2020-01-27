@@ -1,5 +1,5 @@
 import './assets/scss/app.scss';
-import $ from 'cash-dom';
+//import $ from 'cash-dom';
 import { showTime, wrongName, showContent, loading } from './helpers.js';
 
 
