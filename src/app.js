@@ -1,5 +1,6 @@
 import './assets/scss/app.scss';
 import $ from 'cash-dom';
+import { showTime } from './helpers.js';
 
 
 export class App {
@@ -27,7 +28,6 @@ export class App {
       }
 
 
-
       function getResponse() {
         fetch('https://api.github.com/users/' + userName)
           .then((response) => {
@@ -36,6 +36,7 @@ export class App {
             console.log(body)
             self.profile = body;
             self.update_profile();
+            getHistory();
           })
       }
 
@@ -45,15 +46,18 @@ export class App {
             return response.json();
           }).then(function (myJSON) {
             console.log(myJSON);
+            self.histProfile = myJSON;
           });
       }
 
+
+      // 3 timeline items
 
       $('#first-timeline-item').on('click', function (e) {
         $('.first').addClass('is-primary');
         $('.second').removeClass('is-primary');
         $('.third').removeClass('is-primary');
-        getHistory();
+        self.update_history();
       })
 
       $('#second-timeline-item').on('click', function (e) {
@@ -78,6 +82,51 @@ export class App {
   }
 
 
+  update_history() {
+    const toBeSorted = this.histProfile;
+    const sorted = toBeSorted.filter(event => {
+      if (event.type === 'PullRequestReviewCommentEvent' || event.type === 'PullRequestEvent') {
+        return event;
+      };
+    });
+    console.log(sorted);
+
+
+    // 1st Event
+
+    if (sorted[0] === undefined) {
+
+      $('.heading-one').text('No previous activity detected');
+      $('.content-one').addClass('is-hidden');
+
+    } else if (sorted[0].type === 'PullRequestReviewCommentEvent') {
+
+      $('.content-one').removeClass('is-hidden');
+
+      $('.heading-one').text(showTime(this.histProfile[0].created_at)); // Date
+      $('.history-avatar-pic-one').attr('src', this.histProfile[0].actor.avatar_url); // img
+      $('#timeline-name').attr('href', this.profile.html_url).text(this.profile.login); // name
+      $('.payload-action').text(sorted[0].payload.action); // created
+      $('.payload-item').attr('href', sorted[0].payload.comment.html_url).text('comment');  // comment
+      $('.optional-to-one').removeClass('is-hidden'); // hidden 'to'
+      $('.optional-pull-request').attr('href', sorted[0].payload.pull_request.html_url).removeClass('is-hidden');  // hidden pull request
+      $('#history-repo').attr('href', 'https://github.com/' + this.histProfile[0].repo.name).text(this.histProfile[0].repo.name); // repo
+
+    } else if (sorted[0].type === 'PullRequestEvent') {
+
+      $('.content-one').removeClass('is-hidden');
+
+      $('.heading-one').text(showTime(sorted[0].created_at));  // Date
+      $('.history-avatar-pic-one').attr('src', sorted[0].actor.avatar_url); // img
+      $('#timeline-name').attr('href', this.profile.html_url).text(this.profile.login); // name
+      $('.payload-action').text(sorted[0].payload.action); // closed / opened
+      $('.payload-item').attr('href', sorted[0].payload.pull_request.html_url).text('pull request');  // pull request
+      $('.optional-to-one').addClass('is-hidden');  // hidden 'to'
+      $('.optional-pull-request').addClass('is-hidden'); // hidden optional pull request
+      $('#history-repo').attr('href', 'https://github.com/' + sorted[0].repo.name).text(sorted[0].repo.name);  // repo
+    }
+
+  }
 
 
   update_profile() {
