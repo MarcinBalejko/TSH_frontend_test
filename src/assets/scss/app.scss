@@ -37,3 +37,23 @@
  float: right;
  margin-left: 10px;
 }
+
+// Adjusting profile column
+
+@media screen and (max-width: 768px) {
+  .profile-container{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .profile-container{
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .profile-container{
+    width: 30%;
+  }
+}
