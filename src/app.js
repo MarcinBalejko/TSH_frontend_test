@@ -26,20 +26,59 @@ export class App {
         }
       }
 
-      alphanumeric(userName);
 
-      fetch('https://api.github.com/users/' + userName)
-        .then((response) => {
-          return response.json();
-        }).then(function (body) {
-          console.log(body)
-          self.profile = body;
-          self.update_profile();
-        })
+
+      function getResponse() {
+        fetch('https://api.github.com/users/' + userName)
+          .then((response) => {
+            return response.json();
+          }).then(function (body) {
+            console.log(body)
+            self.profile = body;
+            self.update_profile();
+          })
+      }
+
+      function getHistory() {
+        fetch("https://api.github.com/users/" + userName + "/events/public")
+          .then((response) => {
+            return response.json();
+          }).then(function (myJSON) {
+            console.log(myJSON);
+          });
+      }
+
+
+      $('#first-timeline-item').on('click', function (e) {
+        $('.first').addClass('is-primary');
+        $('.second').removeClass('is-primary');
+        $('.third').removeClass('is-primary');
+        getHistory();
+      })
+
+      $('#second-timeline-item').on('click', function (e) {
+        $('.second').addClass('is-primary');
+        $('.first').removeClass('is-primary');
+        $('.third').removeClass('is-primary');
+        getHistory();
+      })
+
+      $('#third-timeline-item').on('click', function (e) {
+        $('.third').addClass('is-primary');
+        $('.second').removeClass('is-primary');
+        $('.first').removeClass('is-primary');
+        getHistory();
+      })
+
+      alphanumeric(userName);
+      getResponse();
 
     })
 
   }
+
+
+
 
   update_profile() {
     $('#profile-name').text($('.enter-username').val())
