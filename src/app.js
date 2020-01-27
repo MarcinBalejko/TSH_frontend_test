@@ -9,6 +9,25 @@ export class App {
     $('.load-username').on('click', function (e) {
       let userName = $('.enter-username').val();
 
+      function alphanumeric(string) {
+        let letters = /^[a-zA-Z_0-9-]+$/;
+        if (string.match(letters)) {
+          console.log('success');
+          $('.enter-username').removeClass('is-danger');
+          $('.profile').removeClass('is-hidden')
+          return true;
+        }
+        else {
+          console.log('wrong name');
+          alert('Please input alphanumeric characters only');
+          $('.profile').addClass('is-hidden')
+          $('.enter-username').addClass('is-danger');
+          return false;
+        }
+      }
+
+      alphanumeric(userName);
+
       fetch('https://api.github.com/users/' + userName)
         .then((response) => {
           return response.json();
