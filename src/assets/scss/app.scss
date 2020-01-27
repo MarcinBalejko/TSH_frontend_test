@@ -1,0 +1,59 @@
+@import "~bulma";
+@import "~bulma-timeline";
+
+.navbar {
+  border-bottom: 1px solid #eee;
+  margin-bottom: 8px;
+}
+
+.gh-username img{
+  width: 32px;
+}
+
+#profile-bio{
+  margin-top:10px;
+}
+
+.timeline .timeline-item {
+  padding-bottom:1em;
+}
+
+.payload-action{
+  font-style: normal;   
+}
+
+.optional-to{
+  font-style: normal;
+}
+
+// Adjusting history timeline image
+
+.history-avatar-pic{
+  float: left;
+  width: 32px;
+}
+
+.gh-username{
+ float: right;
+ margin-left: 10px;
+}
+
+// Adjusting profile column
+
+@media screen and (max-width: 768px) {
+  .profile-container{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .profile-container{
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .profile-container{
+    width: 30%;
+  }
+}
