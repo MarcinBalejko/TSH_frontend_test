@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Github-browser</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.css" />
+  <script type="text/javascript" src="//cdn.jsdelivr.net/cash/0.0.3/cash.min.js"></script>
 </head>
 
 <body>
@@ -35,7 +37,6 @@
       <div class="profile-container column is-one-third">
 
         <h2 class="subtitle is-4">Profile</h2>
-
         <div class="profile">
           <div class="media">
             <div class="media-left">
@@ -48,8 +49,6 @@
               <p class="subtitle is-6"><a href="#" id="profile-url">@johnsmith</a></p>
             </div>
           </div>
-
-
           <div class="content" id="profile-bio">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor
               vestibulum ut.</p>
@@ -59,7 +58,6 @@
 
       <div class="events-container column">
         <h2 class="subtitle is-4">History</h2>
-
         <div class="timeline" id="user-timeline">
 
           <div class="first timeline-item" id="first-timeline-item">
@@ -88,21 +86,22 @@
           <div class="second timeline-item" id="second-timeline-item">
             <div class="second timeline-marker"></div>
             <div class="timeline-content">
-              <p class="heading">Jan 19, 2016</p>
-              <div class="content">
-                <img class="history-avatar-pic" src="https://avatars.githubusercontent.com/u/1208786?" />
+              <p class="heading heading-two">Jan 21, 2016</p>
+              <div class="content content-two">
+                <img class="history-avatar-pic history-avatar-pic-two"
+                  src="https://avatars.githubusercontent.com/u/2310778?" />
                 <span class="gh-username">
-                  <a href="https://github.com/simonsipl">gajdus</a>
-                  created
-                  <a href="https://github.com/TheSoftwareHouse/Kakunin/pull/41#discussion_r176273897">comment</a>
-                  to
-                  <a href="https://api.github.com/repos/TheSoftwareHouse/Kakunin/pulls/comments/176273897">pull
-                    request</a>
-                  <p class="repo-name">
-                    <a href="https://github.com/TheSoftwareHouse/Kakunin">TheSoftwareHouse/Kakunin</a>
+                  <a id="timeline-name-two" href="https://github.com/sethii" target="_blank">gajdus</a>
+                  <i class="payload-action payload-action-two">closed</i>
+                  <a class="payload-item payload-item-two"
+                    href="https://github.com/TheSoftwareHouse/Kakunin/pull/41">pull request</a>
+                  <i class="optional-to optional-to-two is-hidden">to</i>
+                  <a class="optional-pull-request-two is-hidden">pull request</a>
+                  <p class="repo-name-two">
+                    <a id="history-repo-two"
+                      href="https://github.com/TheSoftwareHouse/Kakunin">TheSoftwareHouse/Kakunin</a>
                   </p>
                 </span>
-
               </div>
             </div>
           </div>
@@ -110,24 +109,27 @@
           <div class="third timeline-item" id="third-timeline-item">
             <div class="third timeline-marker"></div>
             <div class="timeline-content">
-              <p class="heading">Jan 19, 2016</p>
-              <div class="content">
-                <img class="history-avatar-pic" src="https://avatars.githubusercontent.com/u/2310778" />
+              <p class="heading heading-three">Jan 21, 2016</p>
+              <div class="content content-three">
+                <img class="history-avatar-pic history-avatar-pic-three"
+                  src="https://avatars.githubusercontent.com/u/2310778?" />
                 <span class="gh-username">
-                  <a href="https://github.com/aherok">sethii</a>
-                  opened
-                  <a href="https://github.com/TheSoftwareHouse/Kakunin/pull/41">pull request</a>
-                  <p class="repo-name">
-                    <a href="https://github.com/TheSoftwareHouse/Kakunin">TheSoftwareHouse/Kakunin</a>
+                  <a id="timeline-name-three" href="https://github.com/sethii" target="_blank">sethii</a>
+                  <i class="payload-action payload-action-three">closed</i>
+                  <a class="payload-item payload-item-three"
+                    href="https://github.com/TheSoftwareHouse/Kakunin/pull/41">pull request</a>
+                  <i class="optional-to optional-to-three is-hidden">to</i>
+                  <a class="optional-pull-request-three is-hidden">pull request</a>
+                  <p class="repo-name-three">
+                    <a id="history-repo-three"
+                      href="https://github.com/TheSoftwareHouse/Kakunin">TheSoftwareHouse/Kakunin </a>
                   </p>
                 </span>
               </div>
             </div>
           </div>
 
-
         </div>
-
       </div>
     </div>
   </div>
