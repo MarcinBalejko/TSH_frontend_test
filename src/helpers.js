@@ -6,6 +6,18 @@ export function showContent() {
     $('.timeline-content').removeClass('is-hidden');
 }
 
+export function loading() {
+    const stopLoading = () => {
+        $('.loader').addClass('is-hidden');
+        $('.profile').removeClass('is-hidden');
+        $('.timeline-content').removeClass('is-hidden');
+    }
+    $('.loader').removeClass('is-hidden');
+    $('.profile').addClass('is-hidden');
+    $('.timeline-content').addClass('is-hidden');
+    setTimeout(stopLoading, 2000);
+}
+
 export function wrongName() {
     alert('Please input alphanumeric characters only');
     $('.enter-username').addClass('is-danger');

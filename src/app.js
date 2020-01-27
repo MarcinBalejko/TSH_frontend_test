@@ -1,6 +1,6 @@
 import './assets/scss/app.scss';
 import $ from 'cash-dom';
-import { showTime, wrongName, showContent } from './helpers.js';
+import { showTime, wrongName, showContent, loading } from './helpers.js';
 
 
 export class App {
@@ -21,7 +21,6 @@ export class App {
           return false;
         }
       }
-
 
       function getResponse() {
         fetch('https://api.github.com/users/' + userName)
@@ -48,12 +47,16 @@ export class App {
           });
       }
 
+      function loadingResponse(callback) {
+        loading();
+        setTimeout(callback, 1500);
+      }
 
 
       function start(checkedUsername) {
         return new Promise((resolve, reject) => {
           if (checkedUsername === true) {
-            getResponse();
+            resolve(loadingResponse(getResponse))
           } else {
             reject(wrongName());
           }
@@ -61,7 +64,7 @@ export class App {
       }
 
 
-      // 3 timeline items
+      // Switching between timeline items
 
       $('.first').on('click', function (e) {
         $('.first').addClass('is-primary');
@@ -83,6 +86,9 @@ export class App {
         $('.first').removeClass('is-primary');
         self.update_history(6, 7, 8);
       })
+
+
+      //Starting after typing in the username
 
       start(alphanumeric(userName));
 
